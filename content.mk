@@ -1,0 +1,95 @@
+
+
+Sources += $(wildcard *.R *.md)
+
+## Lloyd-Smith curves linearized figure
+## lsDensity.Rout: lsDensity.R lsDensity.Rlog
+lsDensity.Rout: lsDensity.R realAct.rda
+lsCurves.Rout: lsCurves.R params.rda funs.rda
+
+plot_inequality_curves.R.1.prevfile:
+
+## Realized activity
+realAct.Rout: realAct.R params.rda funs.rda
+
+## Stack bar
+slowtarget/stackbarSim.Rout: stackbarSim.R params.rda funs.rda
+	$(pipeR)
+stackbar.Rout: stackbar.R params.rda  slow/stackbarSim.rda
+
+## IBM for Histplot
+
+IBM_for_hist.Rout: IBM_for_hist.R funs.rda params.rda
+
+slowtarget/IBM_for_histSim.Rout: IBM_for_histSim.R IBM_for_hist.rda params.rda
+	$(pipeR)
+
+rcHist.Rout: slow/IBM_for_histSim.rda params.rda
+
+## IBM for SEIR?
+
+SEIR_IBM_for_hist.Rout: SEIR_IBM_for_hist.R funs.rda  params.rda
+	$(pipeR)
+
+slowtarget/SEIR_IBM_for_histSim.Rout: SEIR_IBM_for_histSim.R SEIR_IBM_for_hist.rda params.rda
+	$(pipeR)
+
+SEIRrcHist.Rout: slow/SEIR_IBM_for_histSim.rda params.rda
+
+SEIR_RcAverage.Rout: SEIR_RcAverage.R SEIRrcHist.rds 
+	$(pipeR)
+
+## Evolution of variance over time
+slowtarget/RcTimePlotVaryingPeakSim.Rout: RcTimePlotVaryingPeakSim.R params.rda funs.rda
+	$(pipeR)
+# Simulation RcTimePlotVaryingPeakObsSim took so long for timeStep=0.0002, so I ran it on the server
+#slowtarget/RcTimePlotVaryingPeakObsSim.Rout: RcTimePlotVaryingPeakObsSim.R params.rda funs.rda
+#	$(pipeR)
+slowtarget/SimTrunc.Rout: SimTrunc.R params.rda funs.rda
+	$(pipeR)
+
+## Making a simpler example
+slowtarget/check_trunc.Rout: check_trunc.R funs.rda
+	$(pipeR)
+check_trunc_plot.Rout: chkPlotTrunc.R plotStyle.R slow/check_trunc.rda params.rda
+	$(pipeR)
+withinChk.Rout: withinChk.R plotStyle.R funs.rda
+	$(pipeR)
+RcTimePlotVaryingPeak.Rout: Plotforcst.R plotStyle.R slow/RcTimePlotVaryingPeakSim.rda params.rda
+	$(pipeR)
+RcTimePlotVaryingPeakObs.Rout: RcTimePlotVaryingPeakObs.R plotStyle.R slow/RcTimePlotVaryingPeakObsSim.rda params.rda
+PlotTrunc.Rout: PlotTrunc.R plotStyle.R slow/SimTrunc.rda params.rda
+chkPlotTrunc.Rout: chkPlotTrunc.R plotStyle.R slow/SimTrunc.rda params.rda
+
+slowtarget/TimeEvolutionSim.Rout: TimeEvolutionSim.R  params.rda funs.rda
+	$(pipeR)
+TimeEvolutionStack.Rout: TimeEvolutionStack.R plotStyle.R stackbar.rds  slow/TimeEvolutionSim.rda   params.rda funs.rda
+## Some helper functions
+## funs.Rout: funs.R
+
+## Setting parameters
+## params.Rout: params.R
+
+######################################################################
+
+### Makestuff
+
+Sources += Makefile
+
+Ignore += makestuff
+msrepo = https://github.com/dushoff
+
+## ln -s ../makestuff . ## Do this first if you want a linked makestuff
+Makefile: makestuff/02.stamp
+makestuff/%.stamp: | makestuff
+	- $(RM) makestuff/*.stamp
+	cd makestuff && $(MAKE) pull
+	touch $@
+makestuff:
+	git clone --depth 1 $(msrepo)/makestuff
+
+-include makestuff/os.mk
+
+-include makestuff/pipeR.mk
+-include makestuff/git.mk
+-include makestuff/visual.mk

@@ -1,11 +1,5 @@
-## This is [project.Makefile] …
-## make ghrepo_<public/private>
-## Add project info to Makefile (probably optional)
-## make sync
-## … before working here.
+## This is emStaging
 
-## This section is for Dushoff-style vim-setup and vim targeting
-## You can delete it if you don't want it
 current: target
 -include target.mk
 Ignore = target.mk
@@ -14,6 +8,30 @@ vim_session:
 	bash -ic "vmt"
 
 ## -include makestuff/perl.def
+
+######################################################################
+
+Ignore += $(wildcard *.pdf)
+
+targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.Rout.pdf
+
+######################################################################
+
+Sources += $(wildcard *.R *.mk)
+Sources += $(wildcard slow/*)
+autopipeR = defined
+
+## content.mk
+
+CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
+slow/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
+
+slowcrib = $(CP) ../kappaCode/slow/$(notdir $@) $@
+
+######################################################################
+
+%.R:
+	$(CP) ../kappaCode/$@ .
 
 ######################################################################
 
@@ -36,7 +54,8 @@ makestuff:
 
 -include makestuff/os.mk
 
-## -include makestuff/pipeR.mk
+-include makestuff/pipeR.mk
+-include makestuff/slowtarget.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
