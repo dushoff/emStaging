@@ -13,6 +13,8 @@ vim_session:
 
 Ignore += $(wildcard *.pdf)
 
+all: CohortPlot.Rout.final lsFig.Rout.final rcHist.Rout.final TimeEvolutionStack.Rout.final
+
 targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.Rout.pdf
 
 ######################################################################
@@ -26,12 +28,25 @@ autopipeR = defined
 CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
 slow/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
 
-slowcrib = $(CP) ../kappaCode/slow/$(notdir $@) $@
+lsFig.Rout: lsFig.R lsCurves.rds lsDensity.rds
+	$(pipeR)
+lsDensity.Rout: lsDensity.R realAct.rda
+lsCurves.Rout: lsCurves.R params.rda funs.rda
+realAct.Rout: realAct.R params.rda funs.rda
 
-######################################################################
+RcAverage.Rout: RcAverage.R  rcHist.rds
+	$(pipeR)
+rcHist.Rout: slow/IBM_for_histSim.rda params.rda
+slowtarget/IBM_for_histSim.Rout: IBM_for_histSim.R IBM_for_hist.rda params.rda
+	$(pipeR)
 
-%.R:
-	$(CP) ../kappaCode/$@ .
+TimeEvolutionStack.Rout: TimeEvolutionStack.R plotStyle.R stackbar.rds  slow/TimeEvolutionSim.rda   params.rda funs.rda
+slowtarget/TimeEvolutionSim.Rout: TimeEvolutionSim.R  params.rda funs.rda
+	$(pipeR)
+
+stackbar.Rout: stackbar.R params.rda  slow/stackbarSim.rda
+slowtarget/stackbarSim.Rout: stackbarSim.R params.rda funs.rda
+	$(pipeR)
 
 ######################################################################
 
@@ -56,6 +71,7 @@ makestuff:
 
 -include makestuff/pipeR.mk
 -include makestuff/slowtarget.mk
+-include makestuff/makegraph.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
