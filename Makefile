@@ -26,7 +26,7 @@ autopipeR = defined
 ## content.mk
 
 CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
-slow/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
+slowtarget/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
 
 lsFig.Rout: lsFig.R lsCurves.rds lsDensity.rds
 	$(pipeR)
