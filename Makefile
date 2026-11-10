@@ -53,7 +53,7 @@ slowtarget/stackbarSim.Rout: stackbarSim.R params.rda funs.rda
 
 collaborators: tapangoel1994.invite mikeroswell.invite Aznlfr.invite sjbeckett.invite
 
-### Makestuff
+######################################################################
 
 Sources += Makefile
 
