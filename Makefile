@@ -22,11 +22,9 @@ targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.R
 
 ######################################################################
 
-Sources += $(wildcard *.R *.mk)
+Sources += $(wildcard *.R)
 Sources += $(wildcard slow/*)
 autopipeR = defined
-
-## content.mk
 
 CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
 slowtarget/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
@@ -53,7 +51,7 @@ slowtarget/stackbarSim.Rout: stackbarSim.R params.rda funs.rda
 
 ######################################################################
 
-collaborators: tapangoel1994.invite mikeroswell.invite Aznlfr.invite
+collaborators: tapangoel1994.invite mikeroswell.invite Aznlfr.invite sjbeckett.invite
 
 ### Makestuff
 
