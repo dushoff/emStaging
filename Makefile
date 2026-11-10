@@ -55,7 +55,7 @@ collaborators: tapangoel1994.invite mikeroswell.invite Aznlfr.invite sjbeckett.i
 
 ######################################################################
 
-Sources += Makefile
+Sources += Makefile .gitignore
 
 Ignore += makestuff
 msrepo = https://github.com/dushoff
