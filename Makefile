@@ -11,6 +11,8 @@ vim_session:
 
 ######################################################################
 
+Sources += kappa.tag
+
 Ignore += $(wildcard *.pdf)
 
 all: CohortPlot.Rout.final lsFig.Rout.final rcHist.Rout.final TimeEvolutionStack.Rout.final
