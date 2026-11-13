@@ -37,6 +37,9 @@ jekyll.log
 *.rds
 Rplots.pdf
 *.ggp.*
+*.Rscript
+*.Rscript.log
+*.Rscript.Rout
 *.master.mk
 slowtarget/
 *.nd.log
@@ -118,6 +121,9 @@ jekyll.log
 *.rds
 Rplots.pdf
 *.ggp.*
+*.Rscript
+*.Rscript.log
+*.Rscript.Rout
 *.master.mk
 slowtarget/
 *.nd.log
@@ -199,6 +205,9 @@ jekyll.log
 *.rds
 Rplots.pdf
 *.ggp.*
+*.Rscript
+*.Rscript.log
+*.Rscript.Rout
 *.master.mk
 slowtarget/
 *.nd.log
@@ -280,6 +289,9 @@ jekyll.log
 *.rds
 Rplots.pdf
 *.ggp.*
+*.Rscript
+*.Rscript.log
+*.Rscript.Rout
 *.master.mk
 slowtarget/
 *.nd.log
