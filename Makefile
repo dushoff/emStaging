@@ -20,6 +20,9 @@ all: CohortPlot.Rout.final lsFig.Rout.final rcHist.Rout.final TimeEvolutionStack
 
 targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.Rout.pdf
 
+## Grand scripts
+## targets.Rscript:
+
 ## Try to make a map
 ## targets.final.nom.dd.ns.mg.pdf:
 
