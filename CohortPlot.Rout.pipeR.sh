@@ -5,10 +5,8 @@
 set -e
 mkdir -p slowtarget
 
-## pipeR: Making params.Rout using params.R
-## rpcall("params.Rout params.pipestar params.R")
+## Make params.Rout using params.R
 R --vanilla < pipeWrap/params.Rout.R > params.Rout
 
-## pipeR: Making CohortPlot.Rout using CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
-## rpcall("CohortPlot.Rout CohortPlot.pipestar CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda")
+## Make CohortPlot.Rout using CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
 R --vanilla < pipeWrap/CohortPlot.Rout.R > CohortPlot.Rout
