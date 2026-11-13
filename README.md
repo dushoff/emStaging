@@ -19,12 +19,9 @@ The code is run using  *makefile*. Ensure you have a recent version of gnu make 
 The *Makefile* workflow works smoothly on Mac and Linux machines,
 but not on Windows machine. WSL can be a workaround for Windows users.
 
-##  Dependency graph
+Master script: for those who can't run make in a unix environment, we have pushed shell scripts targets.pipeR.sh to do all of the fast steps, and targets.final.pipeR.sh to do all of the steps from beginning to end.
 
-We are unsure whether the steps described in the next section will work on a Windows machine. 
-However,
-we've made a [dependency graph](./outputs/targets.final.dd.mf.mg.pdf) showing which files each figure depends on and the order in which the scripts should be run.
-You can follow this order to reproduce the figures if you're using a Windows machine, or would rather not  use the  *make* utility.
+There is also a [dependency graph](./outputs/targets.final.dd.mf.mg.pdf) showing which files each figure depends on and the order in which the scripts should be run.
 
 ## Recreating analysis of Roswell et al:
 
