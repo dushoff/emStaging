@@ -40,7 +40,6 @@ Rplots.pdf
 *.Rscript
 *.Rscript.log
 *.Rscript.Rout
-*.master.mk
 slowtarget/
 *.nd.log
 *.dd.log
@@ -124,7 +123,6 @@ Rplots.pdf
 *.Rscript
 *.Rscript.log
 *.Rscript.Rout
-*.master.mk
 slowtarget/
 *.nd.log
 *.dd.log
@@ -208,7 +206,6 @@ Rplots.pdf
 *.Rscript
 *.Rscript.log
 *.Rscript.Rout
-*.master.mk
 slowtarget/
 *.nd.log
 *.dd.log
@@ -292,7 +289,6 @@ Rplots.pdf
 *.Rscript
 *.Rscript.log
 *.Rscript.Rout
-*.master.mk
 slowtarget/
 *.nd.log
 *.dd.log
