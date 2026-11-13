@@ -21,7 +21,7 @@ all: CohortPlot.Rout.final lsFig.Rout.final rcHist.Rout.final TimeEvolutionStack
 targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.Rout.pdf
 
 ## Grand scripts
-## targets.Rscript:
+## targets.pipeR.sh:
 
 ## Try to make a map
 ## targets.final.nom.dd.ns.mg.pdf:
@@ -30,6 +30,7 @@ targets: CohortPlot.Rout.pdf lsFig.Rout.pdf rcHist.Rout.pdf TimeEvolutionStack.R
 
 Sources += $(wildcard *.R)
 Sources += $(wildcard slow/*)
+Sources += $(wildcard *.pipeR.sh pipeWrap/*.R pipeWrap/*/*.R)
 autopipeR = defined
 
 CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
