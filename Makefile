@@ -28,6 +28,7 @@ Sources += $(wildcard *.R)
 Sources += $(wildcard slow/*)
 autopipeR = defined
 
+## CohortPlot.masterR: CohortPlot.R
 CohortPlot.Rout: CohortPlot.R plotStyle.R slow/CohortSim.rda params.rda
 slowtarget/CohortSim.Rout: CohortSim.R params.rda funs.rda ;
 
@@ -75,6 +76,7 @@ makestuff:
 -include makestuff/os.mk
 
 -include makestuff/pipeR.mk
+-include makestuff/masterR.mk
 -include makestuff/slowtarget.mk
 -include makestuff/makegraph.mk
 
